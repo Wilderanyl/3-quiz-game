@@ -137,6 +137,7 @@ const singleQuestion = document.getElementById("question");
 const answerLists = document.getElementById("answer-lists");
 const optionBtns = document.getElementById("options");
 const submitBtn = document.getElementById("submit");
+const nextBtn = document.getElementById("next");
 
 playNowButton.innerHTML = "Play now";
 questionsElement.style.display = "none";
@@ -179,12 +180,12 @@ function showQuestions() {
       submitBtn.style.display = "block";
 
       submitBtn.addEventListener("click", () => {
-        submitBtn.innerHTML = "Next";
+        submitBtn.style.display = "none";
+        nextBtn.style.display = "block";
         Array.from(optionBtns.children).forEach((btn) => {
           btn.disabled = true;
           btn.classList.remove("chosenBtn");
           if (btn.dataset.iscorrect === "true") {
-            initialScore++;
             btn.classList.add("correct");
           } else {
             btn.classList.add("incorrect");
@@ -199,10 +200,31 @@ function showQuestions() {
           btn.classList.remove("chosenBtn");
         }
       });
+
+      if(button.dataset.iscorrect === "true") {
+        initialScore++;
+      }
+
     });
 
   }
 }
+
+nextBtn.addEventListener("click", () => {
+  nextBtn.style.display = "none";
+  if(initialIndex < quiz.length) {
+    initialIndex++;
+    if(initialIndex < quiz.length) {
+      showQuestions();
+    } else {
+      questionsElement.innerHTML = "your score is " + initialScore;
+      
+    }
+  } else {
+    alert("else")
+  }
+})
+
 function playNowFun() {
   playNowButton.style.display = "none";
   showQuestions();

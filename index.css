@@ -165,6 +165,20 @@ body .container .project-container .content #questions #buttons .submit {
   color: #fff;
   display: none;
 }
+body .container .project-container .content #questions #buttons .next {
+  font-size: 17px;
+  padding: 10px;
+  border-radius: 4px;
+  margin-left: 10px;
+  border: none;
+  outline: none;
+  background-color: #f0dc4e;
+  color: #2e302c;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.5s;
+  display: none;
+}
 body .footer {
   border-top: 1px solid #2e302c;
   text-align: center;
