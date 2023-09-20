@@ -145,7 +145,10 @@ body {
                 @include buttonStyle;
                 border: 2px solid $bgColorH;
               }
-              button:hover {
+              button:disabled {
+                cursor: no-drop;
+              }
+              button:hover:not([disabled]) {
                 background: transparent;
                 color: $bgColorH;
               }

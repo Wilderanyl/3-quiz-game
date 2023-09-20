@@ -127,7 +127,10 @@ body .container .project-container .content #questions #buttons #options button 
   transition: 0.5s;
   border: 2px solid #f0dc4e;
 }
-body .container .project-container .content #questions #buttons #options button:hover {
+body .container .project-container .content #questions #buttons #options button:disabled {
+  cursor: no-drop;
+}
+body .container .project-container .content #questions #buttons #options button:hover:not([disabled]) {
   background: transparent;
   color: #f0dc4e;
 }

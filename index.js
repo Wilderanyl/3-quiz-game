@@ -136,6 +136,7 @@ const questionsElement = document.getElementById("questions");
 const singleQuestion = document.getElementById("question");
 const answerLists = document.getElementById("answer-lists");
 const optionBtns = document.getElementById("options");
+const submitBtn = document.getElementById("submit");
 
 playNowButton.innerHTML = "Play now";
 questionsElement.style.display = "none";
@@ -144,24 +145,24 @@ let initialIndex = 0;
 let initialScore = 0;
 
 function removePreviousChild() {
-    if(answerLists.firstChild) {
-        while(answerLists.firstChild) {
-            answerLists.removeChild(answerLists.firstChild);
-        }
+  if (answerLists.firstChild) {
+    while (answerLists.firstChild) {
+      answerLists.removeChild(answerLists.firstChild);
     }
-    if(optionBtns.firstChild) {
-        while(optionBtns.firstChild) {
-            optionBtns.removeChild(optionBtns.firstChild);
-        }
+  }
+  if (optionBtns.firstChild) {
+    while (optionBtns.firstChild) {
+      optionBtns.removeChild(optionBtns.firstChild);
     }
+  }
 }
 
 function showQuestions() {
-    removePreviousChild();
+  removePreviousChild();
   const question = quiz[initialIndex];
   questionsElement.style.display = "";
   singleQuestion.innerHTML = `${question.no}. ${question.question}`;
-  for(let i in question.answers) {
+  for (let i in question.answers) {
     const li = document.createElement("li");
     const button = document.createElement("button");
     const answer = question.answers[i];
@@ -170,20 +171,38 @@ function showQuestions() {
     answerLists.appendChild(li);
     optionBtns.appendChild(button);
 
-    button.addEventListener("click", () => {
-        // button.classList.add("chosenBtn");
-        button.ariaSelected = "true"
-    })
+    if (question.answers[i].correct) {
+      button.dataset.iscorrect = "true";
+    }
 
-    // for(let value of optionBtns.children) {
-    //     console.log(value)
-    // }
+    button.addEventListener("click", () => {
+      submitBtn.style.display = "block";
+
+      submitBtn.addEventListener("click", () => {
+        submitBtn.innerHTML = "Next";
+        Array.from(optionBtns.children).forEach((btn) => {
+          btn.disabled = true;
+          btn.classList.remove("chosenBtn");
+          if (btn.dataset.iscorrect === "true") {
+            initialScore++;
+            btn.classList.add("correct");
+          } else {
+            btn.classList.add("incorrect");
+          }
+        });
+      });
+
+      Array.from(optionBtns.children).forEach((btn) => {
+        if (btn.innerHTML === button.innerHTML) {
+          btn.classList.add("chosenBtn");
+        } else {
+          btn.classList.remove("chosenBtn");
+        }
+      });
+    });
 
   }
-
-
 }
-
 function playNowFun() {
   playNowButton.style.display = "none";
   showQuestions();
