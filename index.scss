@@ -89,7 +89,7 @@ body {
       box-shadow: $shadowG;
       width: 500px;
       margin: auto;
-      min-height: 800px;
+      // min-height: 800px;
       .badge {
         position: absolute;
         top: -10px;
@@ -122,6 +122,57 @@ body {
         margin-top: $marginTop * 2;
         padding: 10px;
         color: $bgColorH;
+        #play-now {
+          @include buttonStyle;
+          display: block;
+        }
+        #questions {
+          h1 {
+            font-size: 17px;
+          }
+          #answer-lists {
+            list-style: none;
+            margin: $marginTop;
+            li {
+              margin-top: $marginTop/2;
+            }
+          }
+          #buttons {
+            @include flexBetween;
+            margin-top: $marginTop * 2;
+            #options {
+              button {
+                @include buttonStyle;
+                border: 2px solid $bgColorH;
+              }
+              button:hover {
+                background: transparent;
+                color: $bgColorH;
+              }
+              .correct {
+                border: 2px solid green;
+                background: transparent;
+                color: green;
+              }
+              .incorrect {
+                border: 2px solid red;
+                background: transparent;
+                color: red;
+              }
+              .chosenBtn {
+                border: 2px solid $bgColorH;
+                color: $bgColorH;
+                background: transparent;
+              }
+            }
+            .submit {
+              @include buttonStyle;
+              background-color: green;
+              color: #fff;
+              display: none;
+            }
+          }
+        }
       }
     }
   }
