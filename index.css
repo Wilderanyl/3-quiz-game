@@ -83,6 +83,20 @@ body .container .project-container .content {
   padding: 10px;
   color: #f0dc4e;
 }
+body .container .project-container .content #play-again {
+  font-size: 17px;
+  padding: 10px;
+  border-radius: 4px;
+  margin-left: 10px;
+  border: none;
+  outline: none;
+  background-color: #f0dc4e;
+  color: #2e302c;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.5s;
+  display: none;
+}
 body .container .project-container .content #play-now {
   font-size: 17px;
   padding: 10px;

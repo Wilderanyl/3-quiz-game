@@ -122,6 +122,10 @@ body {
         margin-top: $marginTop * 2;
         padding: 10px;
         color: $bgColorH;
+        #play-again {
+          @include buttonStyle;
+          display: none;
+        }
         #play-now {
           @include buttonStyle;
           display: block;

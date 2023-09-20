@@ -25,112 +25,113 @@ const quiz = [
       },
     ],
   },
-  {
-    no: "Q2",
-    question: "Which of the following is used to create web pages?",
-    answers: [
-      {
-        li: "A",
-        answer: "HTML",
-        correct: true,
-      },
-      {
-        li: "B",
-        answer: "C",
-        correct: false,
-      },
-      {
-        li: "C",
-        answer: "JVM",
-        correct: false,
-      },
-      {
-        li: "D",
-        answer: "DTD",
-        correct: false,
-      },
-    ],
-  },
-  {
-    no: "Q3",
-    question: "HTML is considered as ____ language.",
-    answers: [
-      {
-        li: "A",
-        answer: "Programming Language",
-        correct: false,
-      },
-      {
-        li: "B",
-        answer: "OOP Language",
-        correct: false,
-      },
-      {
-        li: "C",
-        answer: "High Level Language",
-        correct: false,
-      },
-      {
-        li: "D",
-        answer: "Markup Language",
-        correct: true,
-      },
-    ],
-  },
-  {
-    no: "Q4",
-    question: "HTML is a set of markup ____.",
-    answers: [
-      {
-        li: "A",
-        answer: "Attributes",
-        correct: false,
-      },
-      {
-        li: "B",
-        answer: "Tags",
-        correct: true,
-      },
-      {
-        li: "C",
-        answer: "Sets",
-        correct: false,
-      },
-      {
-        li: "D",
-        answer: "Groups",
-        correct: false,
-      },
-    ],
-  },
-  {
-    no: "Q5",
-    question: "HTML tags are used to describe document ____.",
-    answers: [
-      {
-        li: "A",
-        answer: "Deonition",
-        correct: false,
-      },
-      {
-        li: "B",
-        answer: "Language",
-        correct: false,
-      },
-      {
-        li: "C",
-        answer: "Content",
-        correct: true,
-      },
-      {
-        li: "D",
-        answer: "None of those",
-        correct: false,
-      },
-    ],
-  },
+  // {
+  //   no: "Q2",
+  //   question: "Which of the following is used to create web pages?",
+  //   answers: [
+  //     {
+  //       li: "A",
+  //       answer: "HTML",
+  //       correct: true,
+  //     },
+  //     {
+  //       li: "B",
+  //       answer: "C",
+  //       correct: false,
+  //     },
+  //     {
+  //       li: "C",
+  //       answer: "JVM",
+  //       correct: false,
+  //     },
+  //     {
+  //       li: "D",
+  //       answer: "DTD",
+  //       correct: false,
+  //     },
+  //   ],
+  // },
+  // {
+  //   no: "Q3",
+  //   question: "HTML is considered as ____ language.",
+  //   answers: [
+  //     {
+  //       li: "A",
+  //       answer: "Programming Language",
+  //       correct: false,
+  //     },
+  //     {
+  //       li: "B",
+  //       answer: "OOP Language",
+  //       correct: false,
+  //     },
+  //     {
+  //       li: "C",
+  //       answer: "High Level Language",
+  //       correct: false,
+  //     },
+  //     {
+  //       li: "D",
+  //       answer: "Markup Language",
+  //       correct: true,
+  //     },
+  //   ],
+  // },
+  // {
+  //   no: "Q4",
+  //   question: "HTML is a set of markup ____.",
+  //   answers: [
+  //     {
+  //       li: "A",
+  //       answer: "Attributes",
+  //       correct: false,
+  //     },
+  //     {
+  //       li: "B",
+  //       answer: "Tags",
+  //       correct: true,
+  //     },
+  //     {
+  //       li: "C",
+  //       answer: "Sets",
+  //       correct: false,
+  //     },
+  //     {
+  //       li: "D",
+  //       answer: "Groups",
+  //       correct: false,
+  //     },
+  //   ],
+  // },
+  // {
+  //   no: "Q5",
+  //   question: "HTML tags are used to describe document ____.",
+  //   answers: [
+  //     {
+  //       li: "A",
+  //       answer: "Deonition",
+  //       correct: false,
+  //     },
+  //     {
+  //       li: "B",
+  //       answer: "Language",
+  //       correct: false,
+  //     },
+  //     {
+  //       li: "C",
+  //       answer: "Content",
+  //       correct: true,
+  //     },
+  //     {
+  //       li: "D",
+  //       answer: "None of those",
+  //       correct: false,
+  //     },
+  //   ],
+  // },
 ];
 
+const playAgainButton = document.getElementById("play-again");
 const playNowButton = document.getElementById("play-now");
 const questionsElement = document.getElementById("questions");
 const singleQuestion = document.getElementById("question");
@@ -139,6 +140,7 @@ const optionBtns = document.getElementById("options");
 const submitBtn = document.getElementById("submit");
 const nextBtn = document.getElementById("next");
 
+playAgainButton.innerHTML = "Play Again";
 playNowButton.innerHTML = "Play now";
 questionsElement.style.display = "none";
 
@@ -161,7 +163,7 @@ function removePreviousChild() {
 function showQuestions() {
   removePreviousChild();
   const question = quiz[initialIndex];
-  questionsElement.style.display = "";
+  questionsElement.style.display = "block";
   singleQuestion.innerHTML = `${question.no}. ${question.question}`;
   for (let i in question.answers) {
     const li = document.createElement("li");
@@ -201,29 +203,35 @@ function showQuestions() {
         }
       });
 
-      if(button.dataset.iscorrect === "true") {
+      if (button.dataset.iscorrect === "true") {
         initialScore++;
       }
-
     });
-
   }
 }
 
 nextBtn.addEventListener("click", () => {
   nextBtn.style.display = "none";
-  if(initialIndex < quiz.length) {
+  if (initialIndex < quiz.length) {
     initialIndex++;
-    if(initialIndex < quiz.length) {
+    if (initialIndex < quiz.length) {
       showQuestions();
     } else {
-      questionsElement.innerHTML = "your score is " + initialScore;
-      
+      nextBtn.style.display = "block";
+      questionsElement.innerHTML =
+        "your score is " + initialScore + " out of " + quiz.length + ".";
+      // playAgainButton.style.display = "block";
+      // playNowButton.style.display = "block"
+      initialScore = 0;
+      initialIndex = 0;
+
+      console.log(nextBtn)
+
     }
   } else {
-    alert("else")
+    playNowFun();
   }
-})
+});
 
 function playNowFun() {
   playNowButton.style.display = "none";
@@ -231,3 +239,10 @@ function playNowFun() {
 }
 
 playNowButton.addEventListener("click", playNowFun);
+playAgainButton.addEventListener("click", () => {
+  initialScore = 0;
+  initialIndex = 0;
+  showQuestions();
+  console.log(initialIndex);
+  playAgainButton.style.display = "none";
+});
